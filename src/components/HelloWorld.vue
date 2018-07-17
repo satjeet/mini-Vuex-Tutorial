@@ -1,5 +1,9 @@
 <template>
   <div class="hello">
+        <h1>{{ $store.state.count }}</h1>
+        <h2>The count is : {{fetchCount }}</h2>
+        <button class="btn btn-primary" @click="increment">Increase</button>
+        <button class="btn btn-primary" @click="decrement">Decrease</button>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -84,13 +88,21 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  computed:mapGetters([
+    'fetchCount'
+  ]),
+  methods:mapActions([
+    'increment',
+    'decrement'
+  ]),
 }
 </script>
 
